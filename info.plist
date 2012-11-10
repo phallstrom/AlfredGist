@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>action</key>
+	<true/>
+	<key>category</key>
+	<string>SCRIPTS</string>
+	<key>command</key>
+	<string>#
+# Gist requires you to have an account on GitHub.com
+# and to request an authorization token.
+#
+# To request and set the token type 'gist setup'.
+#
+# This will launch Terminal and a script with further
+# instructions. 
+#
+# For help type "gist help"
+#
+
+
+bash gist.sh "{query}"</string>
+	<key>disabled</key>
+	<false/>
+	<key>escapedollar</key>
+	<false/>
+	<key>escapequery</key>
+	<false/>
+	<key>escapequerybackquotes</key>
+	<false/>
+	<key>escapequerybrackets</key>
+	<false/>
+	<key>escapequeryquotes</key>
+	<true/>
+	<key>escapequerysemicolons</key>
+	<false/>
+	<key>growloutput</key>
+	<true/>
+	<key>growloutputsticky</key>
+	<false/>
+	<key>keyword</key>
+	<string>gist</string>
+	<key>logging</key>
+	<false/>
+	<key>multifileargs</key>
+	<false/>
+	<key>parameter</key>
+	<integer>2</integer>
+	<key>silent</key>
+	<true/>
+	<key>subtitle</key>
+	<string>Create Gist from Clipboard or File Action</string>
+	<key>title</key>
+	<string>Gist</string>
+</dict>
+</plist>
