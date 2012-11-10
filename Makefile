@@ -4,9 +4,12 @@ INSTALL_DIR = $(HOME)/Library/Application Support/Alfred/extensions/scripts/Gist
 test:
 	@bash test.sh
 
+clean:
+	@rm -rf pkg
+
 pkg:
 	@mkdir pkg 2>/dev/null
-	@zip -q pkg/Gist.extension $(PKG_FILES)
+	@zip -q pkg/Gist.alfredextension $(PKG_FILES)
 
 install:
 	cp $(PKG_FILES) "$(INSTALL_DIR)/"
