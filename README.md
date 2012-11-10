@@ -1,6 +1,6 @@
 # AlfredGist
 
-An extension for [Alfred](http://www.alfredapp.com/) to create [Gists](https://gist.github.com/) from your clipboard contents or a file selected via Alfred.
+An extension for [Alfred](http://www.alfredapp.com/) to create [Gists](https://gist.github.com/) from your clipboard contents or selected file.
 
 ### Requirements
 
