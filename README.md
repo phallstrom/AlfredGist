@@ -2,7 +2,7 @@
 
 An extension for [Alfred](http://www.alfredapp.com/) to create [Gists](https://gist.github.com/) from your clipboard contents or selected file.
 
-![Example](example.png)
+![Example](https://raw.github.com/phallstrom/AlfredGist/master/example.png)
 
 ### Usage
 
