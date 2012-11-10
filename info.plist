@@ -9,7 +9,8 @@
 	<key>command</key>
 	<string>#
 # Gist requires you to have an account on GitHub.com
-# and to request an authorization token.
+# and to request an authorization token for the 'gists'
+# scope.
 #
 # To request and set the token type 'gist setup'.
 #
