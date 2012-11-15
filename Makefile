@@ -11,7 +11,7 @@ clean:
 	rm -rf $(EXTENSION)
 
 test:
-	bash test.sh
+	@roundup tests/test_*
 
 local-install:
 	cp $(PKG_FILES) "$(INSTALL_DIR)/"
