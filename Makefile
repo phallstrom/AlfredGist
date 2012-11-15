@@ -1,11 +1,17 @@
-PKG_FILES = functions.sh gist.sh icon.png info.plist kudos.plist setup.sh update.xml
+SOURCE_FILES = functions.sh gist.sh icon.png info.plist kudos.plist setup.sh
+PKG_FILES = $(SOURCE_FILES) update.xml
 EXTENSION = Gist.alfredextension
 INSTALL_DIR = $(HOME)/Library/Application Support/Alfred/extensions/scripts/Gist
+VERSION = 1.2
 
 all: $(EXTENSION)
 
-$(EXTENSION): $(PKG_FILES) 
-	zip -vT Gist.alfredextension $(PKG_FILES)
+$(EXTENSION): $(SOURCE_FILES) VERSION
+	zip -T Gist.alfredextension $(PKG_FILES)
+
+VERSION:
+	sed -i '' -e "s#<version>.*</version>#<version>$(VERSION)</version>#" update.xml
+	sed -i '' -e "s#<version>.*</version>#<version>$(VERSION)</version>#" latest.xml
 
 clean:
 	rm -rf $(EXTENSION)
