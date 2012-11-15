@@ -19,9 +19,12 @@
 #
 # For help type "gist help".
 #
+# Version: 1.2
+#
 
+bash gist.sh "{query}"
 
-bash gist.sh "{query}"</string>
+</string>
 	<key>disabled</key>
 	<false/>
 	<key>escapedollar</key>

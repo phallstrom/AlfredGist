@@ -10,6 +10,7 @@ $(EXTENSION): $(SOURCE_FILES) VERSION
 	zip -T Gist.alfredextension $(PKG_FILES)
 
 VERSION:
+	sed -i '' -e "s/^# Version: .*/# Version: $(VERSION)/" info.plist
 	sed -i '' -e "s#<version>.*</version>#<version>$(VERSION)</version>#" update.xml
 	sed -i '' -e "s#<version>.*</version>#<version>$(VERSION)</version>#" latest.xml
 
