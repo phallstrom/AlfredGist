@@ -43,3 +43,6 @@ whatever public/private setting is currently in effect.**
 
 **Note the lack of a period or the addition of "-" in the filename argument has when specifying a description.**
 
+## Help
+
+Having a problem?  Open an issue and I'll see what I can do.
