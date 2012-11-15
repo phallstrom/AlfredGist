@@ -1,15 +1,18 @@
 PKG_FILES = functions.sh gist.sh icon.png info.plist kudos.plist setup.sh update.xml
+EXTENSION = Gist.alfredextension
 INSTALL_DIR = $(HOME)/Library/Application Support/Alfred/extensions/scripts/Gist
 
-test:
-	@bash test.sh
+all: $(EXTENSION)
+
+$(EXTENSION): $(PKG_FILES) 
+	zip -vT Gist.alfredextension $(PKG_FILES)
 
 clean:
-	@rm -rf pkg
+	rm -rf $(EXTENSION)
 
-pkg:
-	mkdir pkg 2>/dev/null
-	zip -qu pkg/Gist.alfredextension $(PKG_FILES)
+test:
+	bash test.sh
 
-install:
+local-install:
 	cp $(PKG_FILES) "$(INSTALL_DIR)/"
+
