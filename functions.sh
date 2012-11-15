@@ -10,8 +10,73 @@ function load_settings
   token=""
   public="false"
   copy_url="true"
-  source "$our_dir/config" 2>/dev/null
+  if [[ -r "$our_dir/config" ]]; then
+    source "$our_dir/config"
+  fi
 }
+
+#
+#
+#
+function save_settings
+{
+  cat << EOT > "$our_dir/config"
+token="$token"
+public="$public"
+copy_url="$copy_url"
+EOT
+}
+
+#
+#
+#
+function set_option
+{
+  local key=$1
+  local val=$2
+
+  if [[ -z "$key" && -z "$val" ]]; then
+    echo "Current options are:"
+    echo "token='$token'"
+    echo "public='$public'"
+    echo "copy_url='$copy_url'"
+    exit
+  fi
+
+  case $key in
+    token)
+      if [[ -z "$val" ]]; then
+        echo "ERROR: Value must be a non-zero length string. Try 'gist setup'."
+        exit
+      else
+        token=$val
+      fi
+      ;;
+    public)
+      if [[ ! "$val" =~ ^(true|false)$ ]]; then
+        echo "ERROR: Value must be 'true' or 'false'."
+        exit
+      fi
+      public=$val
+      ;;
+    copy_url)
+      if [[ ! "$val" =~ ^(true|false)$ ]]; then
+        echo "ERROR: Value must be 'true' or 'false'."
+        exit
+      fi
+      copy_url=$val
+      ;;
+    *)
+      echo "ERROR: Invalid option '$key'. Valid options are:"
+      echo "token [string]"
+      echo "public [true|false]"
+      echo "copy_url [true|false]"
+      ;;
+  esac
+
+}
+
+
 
 #
 # Parse the command line and set all global variables we will need to complete
@@ -102,55 +167,6 @@ function parse_cli()
   content_from="clipboard"
 }
 
-#
-#
-#
-function set_option
-{
-  local key=$1
-  local val=$2
-
-  if [[ -z "$key" && -z "$val" ]]; then
-    echo "Current options are:"
-    echo "token='$token'"
-    echo "public='$public'"
-    echo "copy_url='$copy_url'"
-    exit
-  fi
-
-  case $key in
-    token)
-      if [[ -z "$val" ]]; then
-        echo "ERROR: Value must be a non-zero length string. Try 'gist setup'."
-        exit
-      else
-        token=$val
-      fi
-      ;;
-    public)
-      if [[ ! "$val" =~ ^(true|false)$ ]]; then
-        echo "ERROR: Value must be 'true' or 'false'."
-        exit
-      fi
-      public=$val
-      ;;
-    copy_url)
-      if [[ ! "$val" =~ ^(true|false)$ ]]; then
-        echo "ERROR: Value must be 'true' or 'false'."
-        exit
-      fi
-      copy_url=$val
-      ;;
-    *)
-      echo "ERROR: Invalid option '$key'. Valid options are:"
-      echo "token [string]"
-      echo "public [true|false]"
-      echo "copy_url [true|false]"
-      ;;
-  esac
-
-}
-
 
 function setup
 {
@@ -163,18 +179,6 @@ function setup
         do script with command "cd \"$our_dir\" && bash setup.sh" in window 1
       end tell
 EOF
-}
-
-#
-#
-#
-function save_settings
-{
-  cat << EOT > "$our_dir/config"
-token="$token"
-public="$public"
-copy_url="$copy_url"
-EOT
 }
 
 #
