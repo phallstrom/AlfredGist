@@ -42,6 +42,10 @@ function parse_cli()
   fi
 
   case $arg1 in
+    help)
+      action="help"
+      return
+      ;;
     setup)
       action="setup"
       return

@@ -11,6 +11,11 @@ if [[ -z "$token" && "$action" != "setup" ]]; then
 fi
 
 case $action in
+  help)
+    echo "Launching Help..."
+    open "https://github.com/phallstrom/AlfredGist#usage"
+    exit
+    ;;
   setup)
     echo "Launching Terminal to run setup script..."
     setup
