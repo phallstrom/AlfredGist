@@ -219,8 +219,14 @@ function create_gist
   content=${content//\\/\\\\}
   content=${content//\"/\\\"}
   content=${content//%/%25}
+  content=${content//$'\t'/\\t}
+  content=${content//$'\b'/\\b}
+  content=${content//$'\f'/\\f}
+
+  # Github does not care for \r...
+  content=${content//$'\r\n'/\\n}
+  content=${content//$'\r'/\\n}
   content=${content//$'\n'/\\n}
-  content=${content//$'\r'/\\r}
 
   json=`\
     curl \
