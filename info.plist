@@ -19,7 +19,7 @@
 #
 # For help type "gist help".
 #
-# Version: 1.2
+# Version: 1.3
 #
 
 bash gist.sh "{query}"
