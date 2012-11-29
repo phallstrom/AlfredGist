@@ -19,9 +19,10 @@
 #
 # For help type "gist help".
 #
-# Version: 1.3
+# Version: 1.4
 #
 
+histchars= # Critical to prevent certain shell expansions.
 bash gist.sh "{query}"
 
 </string>

@@ -2,13 +2,13 @@ SOURCE_FILES = functions.sh gist.sh icon.png info.plist kudos.plist setup.sh
 PKG_FILES = $(SOURCE_FILES) update.xml
 EXTENSION = Gist.alfredextension
 INSTALL_DIR = $(HOME)/Library/Application Support/Alfred/extensions/scripts/Gist
-VERSION = 1.3
-COMMENTS = Better JSON support for tabs and carriage returns causing errors.
+VERSION = 1.4
+COMMENTS = Prevent certain bash shell expansions.
 
 all: $(EXTENSION)
 
 $(EXTENSION): $(SOURCE_FILES) VERSION
-	zip -T Gist.alfredextension $(PKG_FILES)
+	zip -T $(EXTENSION) $(PKG_FILES)
 
 VERSION:
 	sed -i '' -e "s/^# Version: .*/# Version: $(VERSION)/" info.plist
