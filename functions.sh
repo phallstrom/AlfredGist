@@ -210,15 +210,15 @@ function create_gist
 
   file=${file//\\/\\\\}
   file=${file//\"/\\\"}
-  file=${file//%/%25}
+  #file=${file//%/%25}
 
   description=${description//\\/\\\\}
   description=${description//\"/\\\"}
-  description=${description//%/%25}
+  #description=${description//%/%25}
 
   content=${content//\\/\\\\}
   content=${content//\"/\\\"}
-  content=${content//%/%25}
+  #content=${content//%/%25}
   content=${content//$'\t'/\\t}
   content=${content//$'\b'/\\b}
   content=${content//$'\f'/\\f}
