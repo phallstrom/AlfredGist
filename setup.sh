@@ -5,7 +5,7 @@ load_settings
 
 cat << EOT
 
-Gist Extension for AlfredApp Setup
+Gist for AlfredApp Setup
 =========================================================================
 
 This script will make a request to the GitHub API and get
@@ -20,7 +20,7 @@ made over SSL.
 If an error occurs the response from GitHub will be returned.
 
 If successful, a token will be set.  You should also see an entry for 
-"Gist Extension for AlfredApp" at the following URL:
+"Gist for AlfredApp" at the following URL:
 
   https://github.com/settings/applications
 
@@ -33,12 +33,14 @@ json=`\
   curl \
   --silent \
   --user $username \
-  --data "{\"scopes\":[\"gist\"],\"note\":\"Gist Extension for AlfredApp\"}" \
+  --data "{\"scopes\":[\"gist\"],\"note\":\"Gist for AlfredApp\"}" \
   https://api.github.com/authorizations \
 `
 
 token=$(get_json_key "token" "$json")
 
+echo ""
+echo "------------------------------------------------"
 echo ""
 if [[ -n "$token" ]]; then
   set_option "token" "$token"

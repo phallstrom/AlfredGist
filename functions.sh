@@ -1,6 +1,26 @@
 #!/bin/bash
 
-our_dir=$(cd $(dirname "$0"); pwd)
+OUR_DIR=$(cd $(dirname "$0"); pwd)
+PREF_DIR="$HOME/Library/Application Support/Alfred 2/Workflow Data/pjkh.gist"
+[[ ! -d "$PREF_DIR" ]] && mkdir -p "$PREF_DIR" 2>/dev/null
+
+function echo_start_items() {
+  echo '<?xml version="1.0"?>'
+  echo '<items>'
+}
+
+function echo_end_items() {
+  echo '</items>'
+}
+
+function echo_item() { # uid, arg, valid, autocomplete, title, subtitle, icon
+  echo "<item uid='$1' arg='$2' valid='$3' autocomplete='$4'>"
+  echo "<title>$5</title>"
+  echo "<subtitle>$6</subtitle>"
+  echo "<icon>${7-icon.png}</icon>"
+  echo "</item>"
+}
+
 
 #
 # Set default settings, then load user's custom settings if config file exists.
@@ -10,8 +30,8 @@ function load_settings
   token=""
   public="false"
   copy_url="true"
-  if [[ -r "$our_dir/config" ]]; then
-    source "$our_dir/config"
+  if [[ -r "$PREF_DIR/config" ]]; then
+    source "$PREF_DIR/config"
   fi
 }
 
@@ -20,7 +40,7 @@ function load_settings
 #
 function save_settings
 {
-  cat << EOT > "$our_dir/config"
+  cat << EOT > "$PREF_DIR/config"
 token="$token"
 public="$public"
 copy_url="$copy_url"
@@ -34,14 +54,6 @@ function set_option
 {
   local key=$1
   local val=$2
-
-  if [[ -z "$key" && -z "$val" ]]; then
-    echo "Current options are:"
-    echo "token='$token'"
-    echo "public='$public'"
-    echo "copy_url='$copy_url'"
-    exit
-  fi
 
   case $key in
     token)
@@ -98,13 +110,13 @@ function parse_cli()
 
   # If there is a single argument that is a readable file then create a gist
   # using that file and it's contents.
-  if [[ $# -eq 1 && -r $arg1 ]]; then
-    action="gist"
-    file=${arg1##*\/}
-    content=`cat "$arg1"`
-    content_from="file"
-    return
-  fi
+  # if [[ $# -eq 1 && -r $arg1 ]]; then
+  #   action="gist"
+  #   file=${arg1##*\/}
+  #   content=`cat "$arg1"`
+  #   content_from="file"
+  #   return
+  # fi
 
   case $arg1 in
     help)
@@ -116,7 +128,7 @@ function parse_cli()
       return
       ;;
     configure)
-      action="option"
+      action="configure"
       key=$arg2
       val=$arg3
       return
@@ -176,7 +188,7 @@ function setup
         tell application "System Events"
           keystroke "t" using {command down}
         end tell
-        do script with command "cd \"$our_dir\" && bash setup.sh" in window 1
+        do script with command "cd \"$OUR_DIR\" && bash setup.sh" in window 1
       end tell
 EOF
 }
@@ -210,15 +222,12 @@ function create_gist
 
   file=${file//\\/\\\\}
   file=${file//\"/\\\"}
-  #file=${file//%/%25}
 
   description=${description//\\/\\\\}
   description=${description//\"/\\\"}
-  #description=${description//%/%25}
 
   content=${content//\\/\\\\}
   content=${content//\"/\\\"}
-  #content=${content//%/%25}
   content=${content//$'\t'/\\t}
   content=${content//$'\b'/\\b}
   content=${content//$'\f'/\\f}

@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<update>
-  <version>1.4</version>
-  <url>https://raw.github.com/phallstrom/AlfredGist/master/Gist.alfredextension</url>
-  <comments>Prevent certain bash shell expansions.</comments>
-</update>
