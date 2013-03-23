@@ -173,7 +173,7 @@ function parse_cli()
   fi
   
   action="gist"
-  content=$(pbpaste)
+  content=`pbpaste`
 }
 
 
