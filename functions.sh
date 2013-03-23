@@ -110,13 +110,13 @@ function parse_cli()
 
   # If there is a single argument that is a readable file then create a gist
   # using that file and it's contents.
-  # if [[ $# -eq 1 && -r $arg1 ]]; then
-  #   action="gist"
-  #   file=${arg1##*\/}
-  #   content=`cat "$arg1"`
-  #   content_from="file"
-  #   return
-  # fi
+  if [[ $# -eq 1 && -r $arg1 ]]; then
+    action="gist"
+    file=${arg1##*\/}
+    content=`cat "$arg1"`
+    content_from="file"
+    return
+  fi
 
   case $arg1 in
     help)

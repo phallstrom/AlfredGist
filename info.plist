@@ -50,6 +50,17 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>8490ED7E-339D-49CE-91F5-9ED557A5DA90</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3CE568C2-0A21-4BE6-97E3-BB057243B669</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>8A13345C-4BF4-4E07-A095-0A57B2B12DE4</key>
 		<array>
 			<dict>
@@ -187,6 +198,21 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>acceptsmulti</key>
+				<true/>
+				<key>filetypes</key>
+				<array/>
+				<key>name</key>
+				<string>Gist: Create from files</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.action</string>
+			<key>uid</key>
+			<string>8490ED7E-339D-49CE-91F5-9ED557A5DA90</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>escaping</key>
 				<integer>63</integer>
 				<key>script</key>
@@ -246,32 +272,37 @@
 		<key>3CE568C2-0A21-4BE6-97E3-BB057243B669</key>
 		<dict>
 			<key>ypos</key>
-			<real>80</real>
+			<real>70</real>
 		</dict>
 		<key>4D5925E1-8D44-4873-8C32-AD9DEFFECB2D</key>
 		<dict>
 			<key>ypos</key>
-			<real>140</real>
+			<real>250</real>
 		</dict>
 		<key>77BF8040-41E4-4716-AA19-8B078465962D</key>
 		<dict>
 			<key>ypos</key>
-			<real>290</real>
+			<real>400</real>
 		</dict>
 		<key>825AE364-0819-4F85-9021-B9AEA0C64118</key>
 		<dict>
 			<key>ypos</key>
 			<real>80</real>
 		</dict>
+		<key>8490ED7E-339D-49CE-91F5-9ED557A5DA90</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
 		<key>8A13345C-4BF4-4E07-A095-0A57B2B12DE4</key>
 		<dict>
 			<key>ypos</key>
-			<real>30</real>
+			<real>120</real>
 		</dict>
 		<key>8EA59738-3116-407D-A363-7F5D35AACA29</key>
 		<dict>
 			<key>ypos</key>
-			<real>450</real>
+			<real>560</real>
 		</dict>
 		<key>93B6825D-3905-4355-8959-B15925F8D264</key>
 		<dict>
