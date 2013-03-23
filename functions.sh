@@ -100,7 +100,6 @@ function parse_cli()
   file=""
   description=""
   content=""
-  content_from=""
 
   local arg1
   local arg2
@@ -114,7 +113,6 @@ function parse_cli()
     action="gist"
     file=${arg1##*\/}
     content=`cat "$arg1"`
-    content_from="file"
     return
   fi
 
@@ -175,8 +173,7 @@ function parse_cli()
   fi
   
   action="gist"
-  content="`pbpaste`"
-  content_from="clipboard"
+  content=$(pbpaste)
 }
 
 
