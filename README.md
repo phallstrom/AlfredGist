@@ -1,27 +1,38 @@
-# AlfredGist
+# Alfred Workflow - Gist
 
-An extension for [Alfred](http://www.alfredapp.com/) to create [Gists](https://gist.github.com/) from your clipboard contents or selected file.
+A workflow for [Alfred](http://www.alfredapp.com/) to create [Gists](https://gist.github.com/) from your clipboard contents or selected files.
 
-![Example](https://raw.github.com/phallstrom/AlfredGist/master/example.png)
+![Example 1](https://raw.github.com/phallstrom/AlfredGist/master/screenshots/1.png)
+![Example 2](https://raw.github.com/phallstrom/AlfredGist/master/screenshots/2.png)
 
 ## Requirements
 
-- A [GitHub](http://github.com) account.
+- Alfred Version 2.
 - The Alfred [Powerpack](http://www.alfredapp.com/powerpack/).
+- A [GitHub](http://github.com) account.
+- [Gist.alfredworkflow](https://raw.github.com/phallstrom/AlfredPow/master/Gist.alfredworkflow).
+
+## Setup
+
+This workflow requires API access to gist.github.com.  Type `gistsetup` to
+start the script that will request this access.
+
+## Configure
+
+Type `gistconfig` to view the existing configuration or change them.
+
+## Help
+
+Type `gist help` to view this help. If you need more help
+[open an issue](https://github.com/phallstrom/AlfredGist/issues) and I'll see what I can do.
 
 ## Usage
 
-* `gist setup` - Setup Gist authentication token.
-* `gist help` - Get help.
-* `gist configure` - View current configuration.
-* `gist configure key val` - Change the configuration (using appropriate values for key and value).
-* `gist` - a plain gist.
+### Files
 
+If activated as a file action, the contents of the selected file(s) will be gisted using whatever public/private setting is currently in effect.
 
-**If activated as a file action, the contents of the file will be gisted using
-whatever public/private setting is currently in effect.**
-
-**If used to copy the Clipboard...**
+### Clipboard Contents
 
 **Public/private gists:**
 
@@ -42,10 +53,6 @@ whatever public/private setting is currently in effect.**
 * `gist - foo.rb ipsum lorem` - a gist with *no filename* and a description of "foo.rb ipsum lorem"
 
 **Note the lack of a period or the addition of "-" in the filename argument has when specifying a description.**
-
-## Help
-
-Having a problem?  [Open an issue](https://github.com/phallstrom/AlfredGist/issues) and I'll see what I can do.
 
 ## Contributions & Thanks
 
