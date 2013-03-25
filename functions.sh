@@ -97,24 +97,15 @@ function set_option
 function parse_cli()
 {
   action=""
-  file=""
   description=""
-  content=""
+  files=()
+  contents=()
 
   local arg1
   local arg2
   local arg3
 
   IFS=" " read arg1 arg2 arg3 <<< $*
-
-  # If there is a single argument that is a readable file then create a gist
-  # using that file and it's contents.
-  if [[ $# -eq 1 && -r $arg1 ]]; then
-    action="gist"
-    file=${arg1##*\/}
-    content=`cat "$arg1"`
-    return
-  fi
 
   case $arg1 in
     help)
@@ -143,6 +134,15 @@ function parse_cli()
       ;;
     private)
       set_option "public" "false"
+      ;;
+    _files)
+      for i in ${*:2}
+      do
+        action="gist"
+        files=("${files[@]}" "${i##*\/}")
+        contents=("${contents[@]}" "`cat "$i"`")
+      done
+      return
       ;;
     *)
       if [[ -n "$arg3" ]]; then
@@ -173,7 +173,8 @@ function parse_cli()
   fi
   
   action="gist"
-  content=`pbpaste`
+  files[0]=$file
+  contents[0]=`pbpaste`
 }
 
 
@@ -188,6 +189,74 @@ function setup
         do script with command "cd \"$OUR_DIR\" && bash setup.sh" in window 1
       end tell
 EOF
+}
+
+#
+#
+#
+function create_gist
+{
+  if [[ ${#contents[@]} -eq 0 ]]; then
+    echo "ERROR: No content to gist."
+    echo "Perhaps the $content_from is blank?"
+    exit
+  fi
+
+  description=${description//\\/\\\\}
+  description=${description//\"/\\\"}
+
+  file_json=''
+
+  for (( i = 0; i < ${#contents[@]}; i++ ))
+  do
+    file=${files[$i]}
+    content=${contents[$i]}
+
+    [[ ${#contents[@]} -gt 1 ]] && file="$i-$file"
+
+    file=${file//\\/\\\\}
+    file=${file//\"/\\\"}
+
+    content=${content//\\/\\\\}
+    content=${content//\"/\\\"}
+    content=${content//$'\t'/\\t}
+    content=${content//$'\b'/\\b}
+    content=${content//$'\f'/\\f}
+
+    # Github does not care for \r...
+    content=${content//$'\r\n'/\\n}
+    content=${content//$'\r'/\\n}
+    content=${content//$'\n'/\\n}
+
+    file_json="$file_json,\"$file\":{\"content\":\"$content\"}"
+
+  done
+
+
+  json=`\
+    curl \
+    --silent \
+    --header "Authorization: token $token" \
+    --data "{\"description\":\"$description\",\"public\":$public,\"files\":{${file_json#,}}}" \
+    https://api.github.com/gists \
+  `
+
+  gist_url=$(get_json_key "html_url" "$json")
+
+  if [[ -n "$gist_url" ]]; then
+    if [[ "$copy_url" = "true" ]]; then
+      echo $gist_url | pbcopy
+      echo "Gist URL has been copied to the clipboard."
+    fi
+    open $gist_url
+  else
+    echo "ERROR: An API error occured."
+    echo ""
+    echo "$json"
+    exit
+  fi
+
+
 }
 
 #
@@ -206,49 +275,5 @@ function get_json_key
     val=${val%%\"*}
   fi
   echo $val
-}
-
-#
-#
-#
-function create_gist
-{
-  file=$1
-  description=$2
-  content=$3
-
-  file=${file//\\/\\\\}
-  file=${file//\"/\\\"}
-
-  description=${description//\\/\\\\}
-  description=${description//\"/\\\"}
-
-  content=${content//\\/\\\\}
-  content=${content//\"/\\\"}
-  content=${content//$'\t'/\\t}
-  content=${content//$'\b'/\\b}
-  content=${content//$'\f'/\\f}
-
-  # Github does not care for \r...
-  content=${content//$'\r\n'/\\n}
-  content=${content//$'\r'/\\n}
-  content=${content//$'\n'/\\n}
-
-  json=`\
-    curl \
-    --silent \
-    --header "Authorization: token $token" \
-    --data "{\"description\":\"$description\",\"public\":$public,\"files\":{\"$file\":{\"content\":\"$content\"}}}" \
-    https://api.github.com/gists \
-  `
-
-  gist_url=$(get_json_key "html_url" "$json")
-
-  if [[ -n "$gist_url" ]]; then
-    echo $gist_url
-  else
-    echo "$json"
-  fi
-
 }
 

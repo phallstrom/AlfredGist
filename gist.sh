@@ -42,27 +42,7 @@ case $action in
     exit
     ;;
   gist)
-    if [[ -z "$content" ]]; then
-      echo "ERROR: No content to gist."
-      echo "Perhaps the $content_from is blank?"
-      exit
-    fi
-
-    result=$(create_gist "$file" "$description" "$content")
-
-    if [[ ! "$result" =~ ^http ]]; then
-      echo "ERROR: An API error occured."
-      echo ""
-      echo $result
-      exit
-    fi
-
-    if [[ "$copy_url" = "true" ]]; then
-      echo $result | pbcopy
-      echo "Gist URL has been copied to the clipboard."
-    fi
-
-    open $result
+    create_gist
     ;;
   *)
     echo "ERROR: Unknown action '$action'."

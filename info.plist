@@ -54,7 +54,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>3CE568C2-0A21-4BE6-97E3-BB057243B669</string>
+				<string>B504F4C6-F55E-4E55-B6A2-7DF195963813</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -83,6 +83,17 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>B504F4C6-F55E-4E55-B6A2-7DF195963813</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>825AE364-0819-4F85-9021-B9AEA0C64118</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Philip Hallstrom</string>
@@ -99,25 +110,19 @@
 			<dict>
 				<key>argumenttype</key>
 				<integer>2</integer>
-				<key>escaping</key>
-				<integer>62</integer>
 				<key>keyword</key>
-				<string>gistconfig</string>
-				<key>script</key>
-				<string>bash gist.sh configure</string>
+				<string>gistsetup</string>
 				<key>subtext</key>
-				<string>Public vs. Private, Copy URL to clipboard.</string>
-				<key>title</key>
-				<string>Gist: Configure default options</string>
-				<key>type</key>
-				<integer>0</integer>
+				<string>Gist requires API access for gist.github.com.</string>
+				<key>text</key>
+				<string>Gist: Setup API Access</string>
 				<key>withspace</key>
 				<false/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
+			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
-			<string>4D5925E1-8D44-4873-8C32-AD9DEFFECB2D</string>
+			<string>77BF8040-41E4-4716-AA19-8B078465962D</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -147,19 +152,25 @@
 			<dict>
 				<key>argumenttype</key>
 				<integer>2</integer>
+				<key>escaping</key>
+				<integer>62</integer>
 				<key>keyword</key>
-				<string>gistsetup</string>
+				<string>gistconfig</string>
+				<key>script</key>
+				<string>bash gist.sh configure</string>
 				<key>subtext</key>
-				<string>Gist requires API access for gist.github.com.</string>
-				<key>text</key>
-				<string>Gist: Setup API Access</string>
+				<string>Public vs. Private, Copy URL to clipboard.</string>
+				<key>title</key>
+				<string>Gist: Configure default options</string>
+				<key>type</key>
+				<integer>0</integer>
 				<key>withspace</key>
 				<false/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
+			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>77BF8040-41E4-4716-AA19-8B078465962D</string>
+			<string>4D5925E1-8D44-4873-8C32-AD9DEFFECB2D</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -259,6 +270,21 @@
 			<key>uid</key>
 			<string>3CE568C2-0A21-4BE6-97E3-BB057243B669</string>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>script</key>
+				<string>bash gist.sh _files {query}</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>B504F4C6-F55E-4E55-B6A2-7DF195963813</string>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
@@ -267,12 +293,12 @@
 		<key>2683C439-FB2C-499E-8CB9-0F88A5FBACFA</key>
 		<dict>
 			<key>ypos</key>
-			<real>200</real>
+			<real>360</real>
 		</dict>
 		<key>3CE568C2-0A21-4BE6-97E3-BB057243B669</key>
 		<dict>
 			<key>ypos</key>
-			<real>70</real>
+			<real>200</real>
 		</dict>
 		<key>4D5925E1-8D44-4873-8C32-AD9DEFFECB2D</key>
 		<dict>
@@ -307,7 +333,12 @@
 		<key>93B6825D-3905-4355-8959-B15925F8D264</key>
 		<dict>
 			<key>ypos</key>
-			<real>340</real>
+			<real>530</real>
+		</dict>
+		<key>B504F4C6-F55E-4E55-B6A2-7DF195963813</key>
+		<dict>
+			<key>ypos</key>
+			<real>30</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>
