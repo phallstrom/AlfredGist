@@ -5,18 +5,15 @@ describe "command line parsing"
 
 before() {
   unset action
-  unset file
   unset description
-  unset content
-  unset content_from
+  unset files
+  unset contents
 }
 
 it_parses_with_a_single_filename() {
-  parse_cli tests/test_cli.sh
+  parse_cli _files tests/test_cli.sh
   test "$action"       = "gist"
-  test "$file"         = "test_cli.sh" 
-  test "$content_from" = "file" 
-  test -n "$content" 
+  test "${files[0]}"   = "test_cli.sh" 
 }
 
 it_parses_help() {
@@ -31,7 +28,7 @@ it_parses_setup() {
 
 it_parses_configure() {
   parse_cli configure somekey someval
-  test "$action"      = "option"
+  test "$action"      = "configure"
   test "$key"         = "somekey"
   test "$val"         = "someval"
 }
@@ -63,90 +60,79 @@ it_parses_private() {
 it_parses_with_zero_arguments() {
   parse_cli
   test "$action"       = "gist"
-  test "$file"         = ""
+  test "${files[0]}"         = ""
   test "$description"  = ""
-  test "$content_from" = "clipboard" 
 }
 
 it_parses_with_p_and_file() {
   parse_cli private file.rb
   test "$action"       = "gist"
-  test "$file"         = "file.rb"
+  test "${files[0]}"         = "file.rb"
   test "$description"  = ""
-  test "$content_from" = "clipboard" 
   test "$public"       = "false" 
 }
 
 it_parses_with_p_and_file_and_desc() {
   parse_cli private file.rb desc
   test "$action"       = "gist"
-  test "$file"         = "file.rb"
+  test "${files[0]}"         = "file.rb"
   test "$description"  = "desc"
-  test "$content_from" = "clipboard" 
   test "$public"       = "false" 
 }
 
 it_parses_with_file() {
   parse_cli private file.rb
   test "$action"       = "gist"
-  test "$file"         = "file.rb"
+  test "${files[0]}"         = "file.rb"
   test "$description"  = ""
-  test "$content_from" = "clipboard" 
 }
 
 it_parses_with_file_and_desc() {
   parse_cli private file.rb desc
   test "$action"       = "gist"
-  test "$file"         = "file.rb"
+  test "${files[0]}"         = "file.rb"
   test "$description"  = "desc"
-  test "$content_from" = "clipboard" 
   test "$public"       = "false" 
 }
 
 it_parses_with_ext() {
   parse_cli ext
   test "$action"       = "gist"
-  test "$file"         = "gist.ext"
+  test "${files[0]}"         = "gist.ext"
   test "$description"  = ""
-  test "$content_from" = "clipboard" 
 }
 
 it_parses_with_dotext() {
   parse_cli .ext
   test "$action"       = "gist"
-  test "$file"         = "gist.ext"
+  test "${files[0]}"         = "gist.ext"
   test "$description"  = ""
-  test "$content_from" = "clipboard" 
 }
 
 it_parses_with_file_as_dash() {
   parse_cli -
   test "$action"       = "gist"
-  test "$file"         = ""
+  test "${files[0]}"         = ""
   test "$description"  = ""
-  test "$content_from" = "clipboard" 
 }
 
 it_parses_with_dash_and_desc() {
   parse_cli - desc
   test "$action"       = "gist"
-  test "$file"         = ""
+  test "${files[0]}"         = ""
   test "$description"  = "desc"
-  test "$content_from" = "clipboard" 
 }
 
 it_parses_with_dotext_and_desc() {
   parse_cli .ext desc
   test "$action"       = "gist"
-  test "$file"         = "gist.ext"
+  test "${files[0]}"         = "gist.ext"
   test "$description"  = "desc"
-  test "$content_from" = "clipboard" 
 }
 
 it_parses_with_ext_and_desc() {
   parse_cli ext desc
   test "$action"       = "gist"
-  test "$file"         = ""
+  test "${files[0]}"         = ""
   test "$description"  = "ext desc"
-  test "$content_from" = "clipboard" 
 }

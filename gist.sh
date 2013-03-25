@@ -1,5 +1,7 @@
 #!/bin/bash
 
+PREF_DIR="$HOME/Library/Application Support/Alfred 2/Workflow Data/pjkh.gist"
+
 source functions.sh
 load_settings
 parse_cli $* 

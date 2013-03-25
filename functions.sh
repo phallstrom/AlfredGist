@@ -1,7 +1,6 @@
 #!/bin/bash
 
 OUR_DIR=$(cd $(dirname "$0"); pwd)
-PREF_DIR="$HOME/Library/Application Support/Alfred 2/Workflow Data/pjkh.gist"
 [[ ! -d "$PREF_DIR" ]] && mkdir -p "$PREF_DIR" 2>/dev/null
 
 function echo_start_items() {
