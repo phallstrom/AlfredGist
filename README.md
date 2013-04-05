@@ -10,7 +10,7 @@ A workflow for [Alfred](http://www.alfredapp.com/) to create [Gists](https://gis
 - Alfred Version 2.
 - The Alfred [Powerpack](http://www.alfredapp.com/powerpack/).
 - A [GitHub](http://github.com) account.
-- [Gist.alfredworkflow](https://raw.github.com/phallstrom/AlfredPow/master/Gist.alfredworkflow).
+- [Gist.alfredworkflow](Gist.alfredworkflow?raw=true).
 
 ## Setup
 
