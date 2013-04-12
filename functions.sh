@@ -185,7 +185,7 @@ function setup
         tell application "System Events"
           keystroke "t" using {command down}
         end tell
-        do script with command "cd \"$OUR_DIR\" && bash setup.sh" in window 1
+        do script with command "bash -c 'cd \"$OUR_DIR\" && bash setup.sh'" in window 1
       end tell
 EOF
 }
