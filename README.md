@@ -40,7 +40,14 @@ If activated as a file action, the contents of the selected file(s) will be gist
 * `gist public` - a public gist.
 * `gist p` - a gist using the opposite of your current public configuration value. That is, if by default your gists are private `gist p` will create a public one (and vice versa).
 
-**All of the following examples can take the public/private parameter as the first argument.**
+**Anonymous gists:**
+
+Gists will be associated with your account by default.
+
+* `gist a` - an anonymous gist.
+* `gist anon` - an anonymous gist.
+
+**All of the following examples can take the public/private or the anonymous parameter (but only one of them) as the first argument.**
 
 * `gist rb` - a gist with a filename of "gist.rb" (ie. Ruby syntax).
 * `gist .rb` - a gist with a filename of "gist.rb" (ie. Ruby syntax). 

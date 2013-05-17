@@ -7,7 +7,7 @@ load_settings
 parse_cli $* 
 
 if [[ -z "$token" && "$action" != "setup" && "$action" != "help" ]]; then
-  echo "FIXME"
+  echo "You need to setup and configure Gist. Type 'gist help' for details."
   exit
 fi
 

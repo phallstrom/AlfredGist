@@ -57,6 +57,22 @@ it_parses_private() {
   test "$public" = "false"
 }
 
+it_parses_nonanonymous() {
+  parse_cli
+  test "$anonymous" = "false"
+}
+
+it_parses_a() {
+  parse_cli a
+  test "$anonymous" = "true"
+}
+
+it_parses_anon() {
+  parse_cli anon
+  test "$anonymous" = "true"
+}
+
+
 it_parses_with_zero_arguments() {
   parse_cli
   test "$action"       = "gist"

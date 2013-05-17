@@ -97,6 +97,7 @@ function parse_cli()
 {
   action=""
   description=""
+  anonymous="false"
   files=()
   contents=()
 
@@ -120,6 +121,12 @@ function parse_cli()
       key=$arg2
       val=$arg3
       return
+      ;;
+    anon)
+      anonymous="true"
+      ;;
+    a)
+      anonymous="true"
       ;;
     p)
       if [[ "$public" = "false" ]]; then
@@ -232,10 +239,16 @@ function create_gist
   done
 
 
+  if [[ "$anonymous" = "false" ]]; then
+    auth_header="Authorization: token $token"
+  else
+    auth_header=""
+  fi
+
   json=`\
     curl \
     --silent \
-    --header "Authorization: token $token" \
+    --header "$auth_header" \
     --data "{\"description\":\"$description\",\"public\":$public,\"files\":{${file_json#,}}}" \
     https://api.github.com/gists \
   `
