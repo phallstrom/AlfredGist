@@ -26,6 +26,7 @@ function echo_item() { # uid, arg, valid, autocomplete, title, subtitle, icon
 #
 function load_settings
 {
+  server="api.github.com"
   token=""
   public="false"
   copy_url="true"
@@ -40,6 +41,7 @@ function load_settings
 function save_settings
 {
   cat << EOT > "$PREF_DIR/config"
+server="$server"
 token="$token"
 public="$public"
 copy_url="$copy_url"
@@ -55,6 +57,13 @@ function set_option
   local val=$2
 
   case $key in
+    server)
+      if [[ -z "$val" ]]; then
+        server="api.github.com"
+      else
+        server=$val
+      fi
+      ;;
     token)
       if [[ -z "$val" ]]; then
         echo "ERROR: Value must be a non-zero length string. Try 'gist setup'."
@@ -82,6 +91,7 @@ function set_option
       echo "token [string]"
       echo "public [true|false]"
       echo "copy_url [true|false]"
+      echo "server [string]"
       ;;
   esac
 
@@ -250,7 +260,7 @@ function create_gist
     --silent \
     --header "$auth_header" \
     --data "{\"description\":\"$description\",\"public\":$public,\"files\":{${file_json#,}}}" \
-    https://api.github.com/gists \
+    https://$server/gists \
   `
 
   gist_url=$(get_json_key "html_url" "$json")

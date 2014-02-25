@@ -26,17 +26,28 @@ If successful, a token will be set.  You should also see an entry for
 
   https://github.com/settings/applications
 
+If you want to use this workflow with a private Github installation
+you must enter the hostname of your Github server when asked. By default
+this workflow will use api.github.com.
+
 EOT
+
+printf "Please enter your GitHub server [api.github.com]: "
+read server
+if [[ -z "$server" ]]; then
+  server="api.github.com"
+fi
 
 printf "Please enter your GitHub username: "
 read username
+
 
 json=`\
   curl \
   --silent \
   --user $username \
   --data "{\"scopes\":[\"gist\"],\"note\":\"Gist for AlfredApp\"}" \
-  https://api.github.com/authorizations \
+  https://$server/authorizations \
 `
 
 token=$(get_json_key "token" "$json")
@@ -46,8 +57,10 @@ echo "------------------------------------------------"
 echo ""
 if [[ -n "$token" ]]; then
   set_option "token" "$token"
+  set_option "server" "$server"
   save_settings
   echo "Token has been retrieved and saved."
+  echo "Server has been saved."
   echo "You're all set to gist!"
 else
   echo "ERROR: An API error occured."

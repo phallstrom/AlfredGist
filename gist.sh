@@ -34,6 +34,7 @@ case $action in
         echo_item "gist_config_copy_url" "configure copy_url true" "yes" "" "The Gist URL is not copied to your clipboard." "Select to copy the URL."
       fi
       echo_item "gist_config_token" "$token" "no" "" "Your API access token is" "$token" 
+      echo_item "gist_config_server" "$server" "no" "" "Your API server is" "$server" 
       echo_end_items
       exit
     fi
