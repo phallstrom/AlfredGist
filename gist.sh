@@ -18,7 +18,7 @@ case $action in
     ;;
   configure)
 
-    newvalue=$(pbpaste | head -1)
+    newvalue=$(pbpaste | head -1 | iconv -c -t ASCII)
 
     if [[ -z "$key" && -z "$val" ]]; then
       echo_start_items
