@@ -6,17 +6,6 @@
 	<string>pjkh.gist</string>
 	<key>connections</key>
 	<dict>
-		<key>2683C439-FB2C-499E-8CB9-0F88A5FBACFA</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>825AE364-0819-4F85-9021-B9AEA0C64118</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
 		<key>3CE568C2-0A21-4BE6-97E3-BB057243B669</key>
 		<array>
 			<dict>
@@ -39,17 +28,6 @@
 				<string></string>
 			</dict>
 		</array>
-		<key>77BF8040-41E4-4716-AA19-8B078465962D</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>2683C439-FB2C-499E-8CB9-0F88A5FBACFA</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
 		<key>8490ED7E-339D-49CE-91F5-9ED557A5DA90</key>
 		<array>
 			<dict>
@@ -66,17 +44,6 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>3CE568C2-0A21-4BE6-97E3-BB057243B669</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
-		<key>8EA59738-3116-407D-A363-7F5D35AACA29</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>93B6825D-3905-4355-8959-B15925F8D264</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -108,21 +75,36 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>keyword</key>
-				<string>gistsetup</string>
-				<key>subtext</key>
-				<string>Gist requires API access for gist.github.com.</string>
-				<key>text</key>
-				<string>Gist: Setup API Access</string>
-				<key>withspace</key>
-				<false/>
+				<key>acceptsmulti</key>
+				<true/>
+				<key>filetypes</key>
+				<array/>
+				<key>name</key>
+				<string>Gist: Create from files</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
+			<string>alfred.workflow.trigger.action</string>
 			<key>uid</key>
-			<string>77BF8040-41E4-4716-AA19-8B078465962D</string>
+			<string>8490ED7E-339D-49CE-91F5-9ED557A5DA90</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>script</key>
+				<string>bash gist.sh _files {query}</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>B504F4C6-F55E-4E55-B6A2-7DF195963813</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -146,6 +128,46 @@
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
 			<string>825AE364-0819-4F85-9021-B9AEA0C64118</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>keyword</key>
+				<string>gist</string>
+				<key>subtext</key>
+				<string>Optionally specify options. See help for more information.</string>
+				<key>text</key>
+				<string>Gist: Create from clipboard</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>8A13345C-4BF4-4E07-A095-0A57B2B12DE4</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>62</integer>
+				<key>script</key>
+				<string>bash gist.sh "{query}"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>3CE568C2-0A21-4BE6-97E3-BB057243B669</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -171,130 +193,14 @@
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>4D5925E1-8D44-4873-8C32-AD9DEFFECB2D</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>keyword</key>
-				<string>gist</string>
-				<key>subtext</key>
-				<string>Optionally specify options. See help for more information.</string>
-				<key>text</key>
-				<string>Gist: Create from clipboard</string>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>8A13345C-4BF4-4E07-A095-0A57B2B12DE4</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>63</integer>
-				<key>script</key>
-				<string>bash gist.sh help</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>93B6825D-3905-4355-8959-B15925F8D264</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>acceptsmulti</key>
-				<true/>
-				<key>filetypes</key>
-				<array/>
-				<key>name</key>
-				<string>Gist: Create from files</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.action</string>
-			<key>uid</key>
-			<string>8490ED7E-339D-49CE-91F5-9ED557A5DA90</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>63</integer>
-				<key>script</key>
-				<string>bash gist.sh setup</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>2683C439-FB2C-499E-8CB9-0F88A5FBACFA</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>keyword</key>
-				<string>gisthelp</string>
-				<key>subtext</key>
-				<string>How to setup, configure, and invoke this workflow.</string>
-				<key>text</key>
-				<string>Gist: View online help</string>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>8EA59738-3116-407D-A363-7F5D35AACA29</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>62</integer>
-				<key>script</key>
-				<string>bash gist.sh "{query}"</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>3CE568C2-0A21-4BE6-97E3-BB057243B669</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>63</integer>
-				<key>script</key>
-				<string>bash gist.sh _files {query}</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>B504F4C6-F55E-4E55-B6A2-7DF195963813</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
 	<key>uidata</key>
 	<dict>
-		<key>2683C439-FB2C-499E-8CB9-0F88A5FBACFA</key>
-		<dict>
-			<key>ypos</key>
-			<real>360</real>
-		</dict>
 		<key>3CE568C2-0A21-4BE6-97E3-BB057243B669</key>
 		<dict>
 			<key>ypos</key>
@@ -304,11 +210,6 @@
 		<dict>
 			<key>ypos</key>
 			<real>250</real>
-		</dict>
-		<key>77BF8040-41E4-4716-AA19-8B078465962D</key>
-		<dict>
-			<key>ypos</key>
-			<real>400</real>
 		</dict>
 		<key>825AE364-0819-4F85-9021-B9AEA0C64118</key>
 		<dict>
@@ -324,16 +225,6 @@
 		<dict>
 			<key>ypos</key>
 			<real>120</real>
-		</dict>
-		<key>8EA59738-3116-407D-A363-7F5D35AACA29</key>
-		<dict>
-			<key>ypos</key>
-			<real>560</real>
-		</dict>
-		<key>93B6825D-3905-4355-8959-B15925F8D264</key>
-		<dict>
-			<key>ypos</key>
-			<real>530</real>
 		</dict>
 		<key>B504F4C6-F55E-4E55-B6A2-7DF195963813</key>
 		<dict>

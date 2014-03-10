@@ -1,7 +1,7 @@
 EXTENSION = Gist.alfredworkflow
 BUNDLEID = pjkh.gist
 VERSION = 2.0.3
-SOURCE_FILES = functions.sh gist.sh icon.png info.plist setup.sh
+SOURCE_FILES = functions.sh gist.sh icon.png info.plist
 PKG_FILES = $(SOURCE_FILES)
 
 WORKFLOW_DIR = $(HOME)/Library/Application Support/Alfred 2/Alfred.alfredpreferences/workflows

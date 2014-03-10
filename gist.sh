@@ -6,7 +6,7 @@ source functions.sh
 load_settings
 parse_cli $* 
 
-if [[ -z "$token" && "$action" != "setup" && "$action" != "help" ]]; then
+if [[ -z "$token" && "$action" != "configure" && "$action" != "help" ]]; then
   echo "You need to setup and configure Gist. Type 'gist help' for details."
   exit
 fi
@@ -16,11 +16,10 @@ case $action in
     open "https://github.com/phallstrom/AlfredGist#usage"
     exit
     ;;
-  setup)
-    setup
-    exit
-    ;;
   configure)
+
+    newvalue=$(pbpaste | head -1)
+
     if [[ -z "$key" && -z "$val" ]]; then
       echo_start_items
       if [[ "$public" = "true" ]]; then
@@ -33,8 +32,8 @@ case $action in
       else
         echo_item "gist_config_copy_url" "configure copy_url true" "yes" "" "The Gist URL is not copied to your clipboard." "Select to copy the URL."
       fi
-      echo_item "gist_config_token" "$token" "no" "" "Your API access token is" "$token" 
-      echo_item "gist_config_server" "$server" "no" "" "Your API server is" "$server" 
+      echo_item "gist_config_token" "configure token $newvalue" "yes" "" "Your API access token is $token" "Select to change to '$newvalue'."
+      echo_item "gist_config_server" "configure server $newvalue" "yes" "" "Your API server is $server" "Select to change to '$newvalue'."
       echo_end_items
       exit
     fi

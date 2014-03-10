@@ -21,11 +21,6 @@ it_parses_help() {
   test "$action"      = "help"
 }
 
-it_parses_setup() {
-  parse_cli setup
-  test "$action"      = "setup"
-}
-
 it_parses_configure() {
   parse_cli configure somekey someval
   test "$action"      = "configure"

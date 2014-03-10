@@ -14,12 +14,24 @@ A workflow for [Alfred](http://www.alfredapp.com/) to create [Gists](https://gis
 
 ## Setup
 
-This workflow requires API access to gist.github.com.  Type `gistsetup` to
-start the script that will request this access.
+This workflow requires API access to gist.github.com.  This requires a personal access token.
+Follow these steps to create and configure this token into the workflow.
+
+1. Go to https://github.com/settings/applications.
+1. In the 'Personal access tokens' section, click 'Generate New Token'.
+1. Enter in a reasonable token description such as 'Alfred Gist Workflow'.
+1. Ensure that the only selected scope is 'gist'.
+1. Click 'Generate Token'.
+1. Copy the newly generated token to your clipboard.
+1. In Alfred, type `gistconfig` and select the 'Your API token' line to set your token.
+
+It should look something like this:
+![Setup](https://raw.github.com/phallstrom/AlfredGist/master/screenshots/setup.png)
 
 ## Configure
 
-Type `gistconfig` to view the existing configuration or change them.
+Type `gistconfig` to view the existing configuration or change them. When
+changing the token and server the value is taken from the clipboard.  
 
 ## Help
 
@@ -30,7 +42,8 @@ Type `gist help` to view this help. If you need more help
 
 ### Files
 
-If activated as a file action, the contents of the selected file(s) will be gisted using whatever public/private setting is currently in effect.
+If activated as a file action, the contents of the selected file(s) will be
+gisted using whatever public/private setting is currently in effect.
 
 ### Clipboard Contents
 

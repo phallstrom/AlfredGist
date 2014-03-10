@@ -66,7 +66,7 @@ function set_option
       ;;
     token)
       if [[ -z "$val" ]]; then
-        echo "ERROR: Value must be a non-zero length string. Try 'gist setup'."
+        echo "ERROR: Value must be a non-zero length string."
         exit
       else
         token=$val
