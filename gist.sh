@@ -2,6 +2,9 @@
 
 PREF_DIR="$HOME/Library/Application Support/Alfred 2/Workflow Data/pjkh.gist"
 
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 source functions.sh
 load_settings
 parse_cli $* 
