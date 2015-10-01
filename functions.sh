@@ -30,8 +30,12 @@ function load_settings
   token=""
   public="false"
   copy_url="true"
+  shared_config_dir=""
   if [[ -r "$PREF_DIR/config" ]]; then
     source "$PREF_DIR/config"
+  fi
+  if [[ -n "$shared_config_dir" && -r "$shared_config_dir/config" ]]; then
+    source "$shared_config_dir/config"
   fi
 }
 
@@ -40,12 +44,25 @@ function load_settings
 #
 function save_settings
 {
+  if [[ -n "$shared_config_dir" ]]; then
+  cat << EOT > "$shared_config_dir/config"
+server="$server"
+token="$token"
+public="$public"
+copy_url="$copy_url"
+EOT
+  cat << EOT > "$PREF_DIR/config"
+shared_config_dir="$shared_config_dir"
+EOT
+  else
   cat << EOT > "$PREF_DIR/config"
 server="$server"
 token="$token"
 public="$public"
 copy_url="$copy_url"
 EOT
+  fi
+
 }
 
 #
@@ -57,6 +74,16 @@ function set_option
   local val=$2
 
   case $key in
+    shared_config_dir)
+      if [[ -z "$val" ]]; then
+        shared_config_dir=""
+      elif [[ ! -d "$val" ]]; then
+        echo "ERROR: '$val' must be an existing directory."
+        exit
+      else
+        shared_config_dir=$val
+      fi
+      ;;
     server)
       if [[ -z "$val" ]]; then
         server="api.github.com"
@@ -92,6 +119,7 @@ function set_option
       echo "public [true|false]"
       echo "copy_url [true|false]"
       echo "server [string]"
+      echo "shared_config_dir [string]"
       ;;
   esac
 

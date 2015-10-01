@@ -71,14 +71,14 @@ it_parses_anon() {
 it_parses_with_zero_arguments() {
   parse_cli
   test "$action"       = "gist"
-  test "${files[0]}"         = ""
+  test "${files[0]}"   = ""
   test "$description"  = ""
 }
 
 it_parses_with_p_and_file() {
   parse_cli private file.rb
   test "$action"       = "gist"
-  test "${files[0]}"         = "file.rb"
+  test "${files[0]}"   = "file.rb"
   test "$description"  = ""
   test "$public"       = "false" 
 }
@@ -86,7 +86,7 @@ it_parses_with_p_and_file() {
 it_parses_with_p_and_file_and_desc() {
   parse_cli private file.rb desc
   test "$action"       = "gist"
-  test "${files[0]}"         = "file.rb"
+  test "${files[0]}"   = "file.rb"
   test "$description"  = "desc"
   test "$public"       = "false" 
 }
@@ -94,14 +94,14 @@ it_parses_with_p_and_file_and_desc() {
 it_parses_with_file() {
   parse_cli private file.rb
   test "$action"       = "gist"
-  test "${files[0]}"         = "file.rb"
+  test "${files[0]}"   = "file.rb"
   test "$description"  = ""
 }
 
 it_parses_with_file_and_desc() {
   parse_cli private file.rb desc
   test "$action"       = "gist"
-  test "${files[0]}"         = "file.rb"
+  test "${files[0]}"   = "file.rb"
   test "$description"  = "desc"
   test "$public"       = "false" 
 }
@@ -109,41 +109,41 @@ it_parses_with_file_and_desc() {
 it_parses_with_ext() {
   parse_cli ext
   test "$action"       = "gist"
-  test "${files[0]}"         = "gist.ext"
+  test "${files[0]}"   = "gist.ext"
   test "$description"  = ""
 }
 
 it_parses_with_dotext() {
   parse_cli .ext
   test "$action"       = "gist"
-  test "${files[0]}"         = "gist.ext"
+  test "${files[0]}"   = "gist.ext"
   test "$description"  = ""
 }
 
 it_parses_with_file_as_dash() {
   parse_cli -
   test "$action"       = "gist"
-  test "${files[0]}"         = ""
+  test "${files[0]}"   = ""
   test "$description"  = ""
 }
 
 it_parses_with_dash_and_desc() {
   parse_cli - desc
   test "$action"       = "gist"
-  test "${files[0]}"         = ""
+  test "${files[0]}"   = ""
   test "$description"  = "desc"
 }
 
 it_parses_with_dotext_and_desc() {
   parse_cli .ext desc
   test "$action"       = "gist"
-  test "${files[0]}"         = "gist.ext"
+  test "${files[0]}"   = "gist.ext"
   test "$description"  = "desc"
 }
 
 it_parses_with_ext_and_desc() {
   parse_cli ext desc
   test "$action"       = "gist"
-  test "${files[0]}"         = ""
+  test "${files[0]}"   = ""
   test "$description"  = "ext desc"
 }

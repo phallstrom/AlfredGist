@@ -5,10 +5,12 @@ describe "load/save options"
 
 before() {
   rm -f "$our_dir/config"
+  mkdir "/tmp/alfred-gist-shared-config-dir"
 }
 
 after() {
   rm -f "$our_dir/config"
+  rm -rf "/tmp/alfred-gist-shared-config-dir"
 }
 
 it_loads_default_settings() {
@@ -17,6 +19,7 @@ it_loads_default_settings() {
   test "$token"    = ""
   test "$public"   = "false"
   test "$copy_url" = "true"
+  test "$shared_config_dir" = ""
 }
 
 it_saves_settings() {
@@ -24,11 +27,13 @@ it_saves_settings() {
   token="token123"
   public="public123"
   copy_url="copy_url123"
+  shared_config_dir="/tmp/alfred-gist-shared-config-dir"
   save_settings
-  unset server token public copy_url
+  unset server token public copy_url shared_config_dir
   load_settings
   test "$server"   = "server123"
   test "$token"    = "token123"
   test "$public"   = "public123"
   test "$copy_url" = "copy_url123"
+  test "$shared_config_dir" = "/tmp/alfred-gist-shared-config-dir"
 }

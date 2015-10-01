@@ -33,6 +33,10 @@ It should look something like this:
 Type `gistconfig` to view the existing configuration or change them. When
 changing the token and server the value is taken from the clipboard.  
 
+If you want to share your configuration across multiple machines (ie. via
+Dropbox) you can provide a shared configuration directory. This directory must
+exist before setting it via the configuration.
+
 ## Help
 
 Type `gist help` to view this help. If you need more help
