@@ -122,10 +122,6 @@ function parse_cli()
       action="help"
       return
       ;;
-    setup)
-      action="setup"
-      return
-      ;;
     configure)
       action="configure"
       key=$arg2
@@ -193,19 +189,6 @@ function parse_cli()
   contents[0]=`pbpaste`
 }
 
-
-function setup
-{
-    osascript 2>&1 >/dev/null <<EOF
-      tell application "Terminal"
-        activate
-        tell application "System Events"
-          keystroke "t" using {command down}
-        end tell
-        do script with command "bash -c 'cd \"$OUR_DIR\" && bash setup.sh'" in window 1
-      end tell
-EOF
-}
 
 #
 #
