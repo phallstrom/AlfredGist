@@ -17,13 +17,13 @@ A workflow for [Alfred](http://www.alfredapp.com/) to create [Gists](https://gis
 This workflow requires API access to gist.github.com.  This requires a personal access token.
 Follow these steps to create and configure this token into the workflow.
 
-1. Go to https://github.com/settings/applications.
-1. In the 'Personal access tokens' section, click 'Generate New Token'.
+1. Go to [Personal access tokens](https://github.com/settings/tokens) in your account settings.
+1. Click [Generate New Token](https://github.com/settings/tokens/new).
 1. Enter in a reasonable token description such as 'Alfred Gist Workflow'.
 1. Ensure that the only selected scope is 'gist'.
 1. Click 'Generate Token'.
 1. Copy the newly generated token to your clipboard.
-1. In Alfred, type `gistconfig` and select the 'Your API token' line to set your token.
+1. In Alfred, type `gistconfig` and select the 'Your API access token is' line to set your token.
 
 It should look something like this:
 ![Setup](https://raw.github.com/phallstrom/AlfredGist/master/screenshots/setup.png)
