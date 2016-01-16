@@ -1,6 +1,6 @@
 EXTENSION = Gist.alfredworkflow
 BUNDLEID = pjkh.gist
-VERSION = 2.0.7
+VERSION = 2.0.8
 SOURCE_FILES = functions.sh gist.sh icon.png info.plist
 PKG_FILES = $(SOURCE_FILES)
 

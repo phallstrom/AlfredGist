@@ -276,7 +276,7 @@ function create_gist
 
   if [[ -n "$gist_url" ]]; then
     if [[ "$copy_url" = "true" ]]; then
-      echo $gist_url | pbcopy
+      echo -n $gist_url | pbcopy
       echo "Gist URL has been copied to the clipboard."
     fi
     open $gist_url
