@@ -217,6 +217,13 @@ function parse_cli()
   contents[0]=`pbpaste`
 }
 
+#
+# Escape JSON string
+#
+function json_escape()
+{
+  echo -n "$1" | python -c 'import json,sys; print json.dumps(sys.stdin.read())'
+}
 
 #
 #
@@ -244,18 +251,9 @@ function create_gist
     file=${file//\\/\\\\}
     file=${file//\"/\\\"}
 
-    content=${content//\\/\\\\}
-    content=${content//\"/\\\"}
-    content=${content//$'\t'/\\t}
-    content=${content//$'\b'/\\b}
-    content=${content//$'\f'/\\f}
+    content="$(json_escape "$content")"
 
-    # Github does not care for \r...
-    content=${content//$'\r\n'/\\n}
-    content=${content//$'\r'/\\n}
-    content=${content//$'\n'/\\n}
-
-    file_json="$file_json,\"$file\":{\"content\":\"$content\"}"
+    file_json="$file_json,\"$file\":{\"content\":$content}"
 
   done
 
