@@ -4,7 +4,7 @@ VERSION = 2.0.6
 SOURCE_FILES = functions.sh gist.sh icon.png info.plist
 PKG_FILES = $(SOURCE_FILES)
 
-WORKFLOW_DIR = $(HOME)/Library/Application Support/Alfred 2/Alfred.alfredpreferences/workflows
+WORKFLOW_DIR = $(HOME)/Dropbox/AlfredApp/Alfred.alfredpreferences/workflows
 INSTALL_DIR = `grep -l -- ">$(BUNDLEID)<" "$(WORKFLOW_DIR)"/*/info.plist | sed 's/\/info.plist//'`
 
 all: $(EXTENSION)
