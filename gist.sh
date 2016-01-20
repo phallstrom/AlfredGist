@@ -35,6 +35,11 @@ case $action in
       else
         echo_item "gist_config_copy_url" "configure copy_url true" "yes" "" "The Gist URL is not copied to your clipboard." "Select to copy the URL."
       fi
+      if [[ "$open_url" = "true" ]]; then
+        echo_item "gist_config_open_url" "configure open_url false" "yes" "" "The Gist URL is opened in a browser." "Select to not open the URL."
+      else
+        echo_item "gist_config_open_url" "configure open_url true" "yes" "" "The Gist URL is not opened in a browser." "Select to open the URL."
+      fi
       echo_item "gist_config_token" "configure token $newvalue" "yes" "" "Your API access token is '$token'" "Select to change to '$newvalue'."
       echo_item "gist_config_server" "configure server $newvalue" "yes" "" "Your API server is '$server'" "Select to change to '$newvalue'."
       echo_item "gist_config_shared_config_dir" "configure shared_config_dir $newvalue" "yes" "" "Your shared config directory is '$shared_config_dir'" "Select to change to '$newvalue'."

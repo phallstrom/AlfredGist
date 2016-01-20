@@ -8,6 +8,7 @@ before() {
   token="12345"
   public="true"
   copy_url="true"
+  open_url="true"
   save_settings
   mkdir "/tmp/alfred-gist-shared-config-dir"
 }
@@ -89,6 +90,23 @@ it_sets_copy_url_to_true() {
 it_sets_copy_url_to_false() {
   set_option "copy_url" "false"
   test "$copy_url" = "false"
+}
+
+################################################################################
+
+it_errors_when_setting_open_url_to_bad_value() {
+  bash gist.sh configure open_url | grep "ERROR"
+  bash gist.sh configure open_url foo | grep "ERROR"
+}
+
+it_sets_open_url_to_true() {
+  set_option "open_url" "true"
+  test "$open_url" = "true"
+}
+
+it_sets_open_url_to_false() {
+  set_option "open_url" "false"
+  test "$open_url" = "false"
 }
 
 ################################################################################

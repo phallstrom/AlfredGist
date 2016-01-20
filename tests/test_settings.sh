@@ -19,6 +19,7 @@ it_loads_default_settings() {
   test "$token"    = ""
   test "$public"   = "false"
   test "$copy_url" = "true"
+  test "$open_url" = "true"
   test "$shared_config_dir" = ""
 }
 
@@ -27,13 +28,15 @@ it_saves_settings() {
   token="token123"
   public="public123"
   copy_url="copy_url123"
+  open_url="open_url123"
   shared_config_dir="/tmp/alfred-gist-shared-config-dir"
   save_settings
-  unset server token public copy_url shared_config_dir
+  unset server token public copy_url open_url shared_config_dir
   load_settings
   test "$server"   = "server123"
   test "$token"    = "token123"
   test "$public"   = "public123"
   test "$copy_url" = "copy_url123"
+  test "$open_url" = "open_url123"
   test "$shared_config_dir" = "/tmp/alfred-gist-shared-config-dir"
 }

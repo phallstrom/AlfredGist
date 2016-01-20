@@ -30,6 +30,7 @@ function load_settings
   token=""
   public="false"
   copy_url="true"
+  open_url="true"
   shared_config_dir=""
   if [[ -r "$PREF_DIR/config" ]]; then
     source "$PREF_DIR/config"
@@ -50,6 +51,7 @@ server="$server"
 token="$token"
 public="$public"
 copy_url="$copy_url"
+open_url="$open_url"
 EOT
   cat << EOT > "$PREF_DIR/config"
 shared_config_dir="$shared_config_dir"
@@ -60,6 +62,7 @@ server="$server"
 token="$token"
 public="$public"
 copy_url="$copy_url"
+open_url="$open_url"
 EOT
   fi
 
@@ -113,11 +116,19 @@ function set_option
       fi
       copy_url=$val
       ;;
+    open_url)
+      if [[ ! "$val" =~ ^(true|false)$ ]]; then
+        echo "ERROR: Value must be 'true' or 'false'."
+        exit
+      fi
+      open_url=$val
+      ;;
     *)
       echo "ERROR: Invalid option '$key'. Valid options are:"
       echo "token [string]"
       echo "public [true|false]"
       echo "copy_url [true|false]"
+      echo "open_url [true|false]"
       echo "server [string]"
       echo "shared_config_dir [string]"
       ;;
@@ -279,7 +290,9 @@ function create_gist
       echo -n $gist_url | pbcopy
       echo "Gist URL has been copied to the clipboard."
     fi
-    open $gist_url
+    if [[ "$open_url" = "true" ]]; then
+      open $gist_url
+    fi
   else
     echo "ERROR: An API error occured."
     echo ""
