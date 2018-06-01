@@ -222,7 +222,7 @@ function parse_cli()
       file="gist.$file"
     fi
   fi
-  
+
   action="gist"
   files[0]=$file
   contents[0]=`pbpaste`
@@ -234,6 +234,14 @@ function parse_cli()
 function json_escape()
 {
   echo -n "$1" | python -c 'import json,sys; print json.dumps(sys.stdin.read())'
+}
+
+#
+# Get Gist API endpoint from top level API
+#
+function get_gist_api()
+{
+  curl --silent --header "$auth_header" https://$server/api/v3 | python -c 'import json,sys; print json.loads(sys.stdin.read())["gists_url"].split("{")[0]'
 }
 
 #
@@ -275,12 +283,14 @@ function create_gist
     auth_header=""
   fi
 
+  gist_api="$(get_gist_api)"
+
   json=`\
     curl \
     --silent \
     --header "$auth_header" \
     --data "{\"description\":\"$description\",\"public\":$public,\"files\":{${file_json#,}}}" \
-    https://$server/gists \
+    ${gist_api} \
   `
 
   gist_url=$(get_json_key "html_url" "$json")
@@ -306,7 +316,7 @@ function create_gist
 #
 # Usage:
 #   val=$(get_json_key "key" "json string")
-# 
+#
 # The quotes are critically important.
 #
 function get_json_key
