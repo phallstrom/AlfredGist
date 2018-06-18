@@ -241,7 +241,12 @@ function json_escape()
 #
 function get_gist_api()
 {
-  curl --silent --header "$auth_header" https://$server/api/v3 | python -c 'import json,sys; print json.loads(sys.stdin.read())["gists_url"].split("{")[0]'
+  # GitHub.com & GitHub Enterprise have different
+  if [[ "${server}" == 'api.github.com' ]]; then
+    echo "https://${server}/gists"
+  else
+    curl --silent --header "$auth_header" https://$server/api/v3 | python -c 'import json,sys; print json.loads(sys.stdin.read())["gists_url"].split("{")[0]'
+  fi
 }
 
 #
