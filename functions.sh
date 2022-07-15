@@ -233,7 +233,7 @@ function parse_cli()
 #
 function json_escape()
 {
-  echo -n "$1" | python -c 'import json,sys; print json.dumps(sys.stdin.read())'
+  echo -n "$1" | python3 -c 'import json,sys; print(json.dumps(sys.stdin.read()))'
 }
 
 #
@@ -245,7 +245,7 @@ function get_gist_api()
   if [[ "${server}" == 'api.github.com' ]]; then
     echo "https://${server}/gists"
   else
-    curl --silent --header "$auth_header" https://$server/api/v3 | python -c 'import json,sys; print json.loads(sys.stdin.read())["gists_url"].split("{")[0]'
+    curl --silent --header "$auth_header" https://$server/api/v3 | python3 -c 'import json,sys; print(json.loads(sys.stdin.read())["gists_url"].split("{")[0])'
   fi
 }
 
